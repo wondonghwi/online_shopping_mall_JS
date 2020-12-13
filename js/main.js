@@ -32,6 +32,7 @@ const onButtonClick = (e , items) => {
 
   // console.log(key)
   // console.log(value)
+  // null checking
   if (key === undefined || value === undefined) {
     return;
   }
@@ -42,6 +43,7 @@ const onButtonClick = (e , items) => {
   displayItems(filtered);
 }
 
+//addEventListener함수
 const setEventListeners = (items) => {
   const logo = document.querySelector('.logo');
   const buttons = document.querySelector('.buttons');
