@@ -8,8 +8,8 @@ const loadItems = () => {
 //Update list
 const displayItems = (items) => {
   const container = document.querySelector('.items');
-  const html = items.map(item => createHtmlString(item));
-  console.log(html);
+  // const html = items.map(item => createHtmlString(item));
+  // console.log(html);
   container.innerHTML = items.map(item => createHtmlString(item)).join('');
 }
 
@@ -24,10 +24,32 @@ const createHtmlString = (item) => {
   `;
 }
 
-const SetEventListeners = () => {
+//버튼이 클릭되었을때 동작하는 함수
+const onButtonClick = (e , items) => {
+  const dataset = e.target.dataset;
+  const key = dataset.key;
+  const value = dataset.value;
 
+  // console.log(key)
+  // console.log(value)
+  if (key === undefined || value === undefined) {
+    return;
+  }
+
+  // console.log(items)
+  const filtered = items.filter(item => item[key] === value);
+  // console.log(filtered);
+  displayItems(filtered);
+}
+
+const setEventListeners = (items) => {
+  const logo = document.querySelector('.logo');
+  const buttons = document.querySelector('.buttons');
+  logo.addEventListener('click', () => displayItems(items));
+  buttons.addEventListener('click',(e) => onButtonClick(e , items));
 };
 
+//main
 loadItems()
   .then(items => {
     displayItems(items);
